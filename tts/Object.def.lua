@@ -834,6 +834,93 @@ function Object.takeObject(params) end
 ---@return boolean
 function Object.unregisterCollisions() end
 
+---Adds the specified tag to the object.
+---@param tag string
+---@return boolean
+function Object.addTag(tag) end
+
+---Returns an array of tags that have been added to the object.
+---@return string[]
+function Object.getTags() end
+
+---Returns whether the object has any tags.
+---@return boolean
+function Object.hasAnyTag() end
+
+---Returns whether the object and the specified `other` object share at least one tag in common.
+---@param other tts__Object
+---@return boolean
+function Object.hasMatchingTag(other) end
+
+---Returns whether the object has the specified tag.
+---@param tag string
+---@return boolean
+function Object.hasTag(tag) end
+
+---Removes the specified tag from the object.
+---@param tag string
+---@return boolean
+function Object.removeTag(tag) end
+
+---Replaces all tags on the object with the given tags.
+---@param tags string[]
+---@return boolean
+function Object.setTags(tags) end
+
+---Copy a list of Objects to the clipboard. Works with `paste(...)`.
+---@param objects tts__Object[] @List of in-game objects to be copied.
+---@return true
+---@see _G#paste
+function copy(objects) end
+
+---Destroy an Object.
+---@param object tts__Object @The Object you wish to delete from the instance.
+---@return boolean
+function destroyObject(object) end
+
+---Returns a Table of all Objects in the game except hand zones.
+---@deprecated Use `getObjects()` instead.
+---@return tts__Object[]
+---@see _G#getObjects
+function getAllObjects() end
+
+---@param guid string
+---@return nil | tts__Object
+function getObjectFromGUID(guid) end
+
+---Returns an array of all Objects in the game.
+---@return tts__Object[]
+function getObjects() end
+
+---Returns an array of all Objects which have the specified tag attached.
+---@param tag string
+---@return tts__Object[]
+function getObjectsWithTag(tag) end
+
+---Returns an array of all Objects which have at least one of the specified tags attached.
+---@param tags string[]
+---@return tts__Object[]
+function getObjectsWithAnyTags(tags) end
+
+---Returns an array of all Objects which have all of the specified tags attached.
+---@param tags string[]
+---@return tts__Object[]
+function getObjectsWithAllTags(tags) end
+
+---@param objects tts__Object[]
+---@return (tts__Container | tts__Stackable)[]
+function group(objects) end
+
+---@shape tts__PasteParameters
+---@field position nil | tts__VectorShape @Position of the first object to paste. Default {0, 3, 0}.
+---@field snap_to_grid nil | boolean @If snap-to-grid is active on the spawned item/s. Default false.
+
+---Pastes Objects in-game that were copied to the in-game clipboard. Works with `copy(...)`.
+---@param params tts__PasteParameters @A Table containing instructions of where to spawn the Objects.
+---@return tts__Object[]
+---@see _G#copy
+function paste(params) end
+
 ---@shape tts__Callback<T>
 ---@field callback_function nil | T
 ---@field callback nil | string @Deprecated - use callback_function
@@ -852,6 +939,10 @@ function Object.unregisterCollisions() end
 ---@field sound nil | boolean @Default true
 ---@field snap_to_grid nil | boolean
 
+---@param params tts__SpawnObjectParams
+---@return tts__Object
+function spawnObject(params) end
+
 ---@shape tts__SpawnObjectSerializedParams : tts__ObjectCallback
 ---@field position nil | tts__VectorShape
 ---@field rotation nil | tts__VectorShape
@@ -860,32 +951,16 @@ function Object.unregisterCollisions() end
 ---@shape tts__SpawnObjectDataParams : tts__SpawnObjectSerializedParams
 ---@field data tts__ObjectState
 
+---@param params tts__SpawnObjectDataParams
+---@return tts__Object
+function spawnObjectData(params) end
+
 ---@shape tts__SpawnObjectJSONParams : tts__SpawnObjectSerializedParams
 ---@field json string
 
----@param params tts__SpawnObjectParams
----@return tts__Object
-function spawnObject(params)
-end
-
----@param params tts__SpawnObjectDataParams
----@return tts__Object
-function spawnObjectData(params)
-end
-
 ---@param params tts__SpawnObjectJSONParams
 ---@return tts__Object
-function spawnObjectJSON(params)
-end
-
----@param guid string
----@return nil | tts__Object
-function getObjectFromGUID(guid)
-end
-
----@return tts__Object[]
-function getAllObjects()
-end
+function spawnObjectJSON(params) end
 
 ---@class tts__Global : tts__Object
 Global = {}
